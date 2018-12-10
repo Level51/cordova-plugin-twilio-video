@@ -330,7 +330,11 @@
         [self cleanupRemoteParticipant];
     }
     [self logMessage:[NSString stringWithFormat:@"Room %@ participant %@ disconnected", room.name, participant.identity]];
-    //[self logMessage:@"Participant disconnected"];
+
+    // Disconnect and destroy the controller when the participant disconnects
+    [self.room disconnect];
+    [self dismissViewControllerAnimated:true completion:nil];
+    [self triggerEvent:@"disconnected"];
 }
 
 #pragma mark - TVIParticipantDelegate

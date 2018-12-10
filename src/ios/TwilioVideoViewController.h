@@ -5,6 +5,7 @@
 //
 
 @import UIKit;
+#import <Cordova/CDV.h>
 
 @interface TwilioVideoViewController : UIViewController
 
