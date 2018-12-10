@@ -110,7 +110,6 @@
                     <connections>
                         <outlet property="disconnectButton" destination="krA-sT-Z3g" id="uQu-1U-Ree"/>
                         <outlet property="flipCameraButton" destination="XFY-jj-EdK" id="4z3-Ad-GTA"/>
-                        <outlet property="messageLabel" destination="ebq-ja-6iU" id="yjH-dj-KgF"/>
                         <outlet property="micButton" destination="rwp-9E-VzS" id="SW4-po-OHw"/>
                         <outlet property="previewView" destination="hJ3-NM-pz1" id="1kY-rd-tEJ"/>
                         <outlet property="videoButton" destination="deh-AI-0mD" id="xQb-FF-JQs"/>

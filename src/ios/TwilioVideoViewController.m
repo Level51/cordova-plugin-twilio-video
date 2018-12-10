@@ -44,7 +44,6 @@
 @property (weak, nonatomic) IBOutlet TVIVideoView *previewView;
 
 @property (nonatomic, weak) IBOutlet UIButton *disconnectButton;
-@property (nonatomic, weak) IBOutlet UILabel *messageLabel;
 @property (nonatomic, weak) IBOutlet UIButton *micButton;
 @property (nonatomic, weak) IBOutlet UIButton *flipCameraButton;
 @property (nonatomic, weak) IBOutlet UIButton *videoButton;
@@ -76,18 +75,20 @@
 
 - (void)connectToRoom:(NSString*)room {
     [self showRoomUI:YES];
+    [self doConnect:room];
 
-    if ([self.accessToken isEqualToString:@"TWILIO_ACCESS_TOKEN"]) {
-        [self logMessage:[NSString stringWithFormat:@"Fetching an access token"]];
-        [self showRoomUI:NO];
-    } else {
-        [self doConnect:room];
-    }
+    [self logMessage:@"connectToRoom"];
+}
+
+- (void)triggerEvent:(NSString*)name {
+    [self logMessage:@"triggerEvent"];
+    [self.commandDelegate evalJs:[NSString stringWithFormat:@"window.cordova.fireDocumentEvent('ioscallback', { 'action': '%@'})", name]];
 }
 
 - (IBAction)disconnectButtonPressed:(id)sender {
     [self.room disconnect];
     [self dismissViewControllerAnimated:true completion:nil];
+    [self triggerEvent:@"disconnected"];
 }
 
 - (IBAction)micButtonPressed:(id)sender {
@@ -278,8 +279,6 @@
 
 - (void)logMessage:(NSString *)msg {
     NSLog(@"%@", msg);
-    // TODO remove?
-    self.messageLabel.text = msg;
 }
 
 #pragma mark - UITextFieldDelegate

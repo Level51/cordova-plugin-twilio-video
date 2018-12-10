@@ -9,6 +9,7 @@
 @interface TwilioVideoViewController : UIViewController
 
 @property (nonatomic, strong) NSString *accessToken;
+@property (nonatomic, weak) id <CDVCommandDelegate> commandDelegate;
 
 - (void)connectToRoom:(NSString*)room ;
 
