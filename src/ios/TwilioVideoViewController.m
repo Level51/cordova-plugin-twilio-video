@@ -334,7 +334,7 @@
     // Disconnect and destroy the controller when the participant disconnects
     [self.room disconnect];
     [self dismissViewControllerAnimated:true completion:nil];
-    [self triggerEvent:@"disconnected"];
+    [self triggerEvent:@"participant_disconnected"];
 }
 
 #pragma mark - TVIParticipantDelegate
